@@ -1,4 +1,4 @@
 python setup.py sdist
-pip install twine
-twine upload dist/*
-rm -rf build/ dist/ PyGrids.egg-info/
+pip install twine -q -q
+twine upload dist/* -u $user -p $passw
+rm -rf build/ dist/ *.egg-info/

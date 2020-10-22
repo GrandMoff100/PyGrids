@@ -64,6 +64,9 @@ class Grid:
     
     def __repr__(self):
         return '<Grid {}x{} created at {}>'.format(self.width, self.height, repr(str(self.log.created_at)))
+    
+    def __iter__(self):
+        return self._data.__iter__()
 
     def view(self, text_align='left'):
         format_line = construct_grid_template_line(self.width)

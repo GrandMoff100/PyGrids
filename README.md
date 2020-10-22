@@ -34,7 +34,7 @@ Will output...
 $ pip install pygrids
 ```
 
-## Usage
+## ``Grid`` Usage
 Here's how you can use PyGrids.
 
 ### Using cells
@@ -80,6 +80,46 @@ grid.save(filename='mygrid.dat')
 You can also load your grids into python by using `Grid`'s static ``load()`` method like so.
 ```py
 grid = Grid.load('mygrid.dat')
+```
+
+## ``GridLog``'s
+Each grid object tracks when it's methods are used and logs them to it's unique ``GridLog`` object. Let's take a look from out first example, what it's log would look like.
+```py
+print(grid.log)
+```
+Looks something like
+```py
+[GridLog created at [2020-10-21 20:30:11.230139]]:
+-> [GET_CELL] (5, 3) at [2020-10-21 20:30:11.230171]
+-> [GET_CELL] (3, 1) at [2020-10-21 20:30:11.230233]
+-> [UPDATE_CELL] (5, 3, 'Foo') at [2020-10-21 20:30:11.230270]
+-> [UPDATE_CELL] (3, 2, 'Bar') at [2020-10-21 20:30:11.230286]
+-> [LOG_VIEW] () at [2020-10-21 20:30:11.230401]
+```
+
+## ``MultiDimensionalArray``'s
+Unlike grids, which are constrained to only 2 dimensions, `MultiDimensionalArray`s support arrays of any shape.
+
+```py
+from grids import MultiDimensionalArray
+
+myshape = [3,2,4,5]
+
+array = MultiDimensionalArray(myshape)
+```
+
+Keep reading for how to use it
+
+## MultiDimensionalArray Usage
+Here's a few example's on how use MultiDimensionalArray's
+
+### Updating and Getting Cells
+```py
+target_coord = [1,2,3,4]
+
+array.update_cell(target_coord, 'Foo')
+
+print(array.get_cell(target_coord)) # Foo
 ```
 
 ## License
