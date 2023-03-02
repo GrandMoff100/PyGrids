@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "pygrids"
+version = "1.0.1"
+description = "Spreadsheet-like python objects."
+authors = ["Nate <Nlarsen23.student@gmail.com>"]
+readme = "README.md"
+packages = ["grids"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.24.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
