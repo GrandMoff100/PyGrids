@@ -5,41 +5,7 @@ import pickle
 import numpy
 
 from .errors import LogTypeError
-
-NULL = "∅"
-LOG_EVENT_TYPES = ["UPDATE_CELL", "GET_CELL", "GRID_VIEW", "LOG_VIEW"]
-
-
-def gen(iterable):
-    for i in iterable:
-        yield i
-
-
-class GridLog:
-    def __init__(self, grid):
-        self.grid = grid
-        self.created_at = datetime.datetime.now()
-        self._data = f"# GridLog created at [{self.created_at}]:" + "\n"
-
-    def __str__(self):
-        return self.read()
-
-    def log(self, event, *args):
-        if event not in LOG_EVENT_TYPES:
-            raise LogTypeError(event)
-        self._data += "-> [{}] ({}) at [{}]\n".format(
-            event, ", ".join(args), datetime.datetime.now()
-        )
-
-    def read(self):
-        self.log("LOG_VIEW")
-        return self._data
-
-    def readlines(self):
-        lines = self._data.split("\n")
-        while "" in lines:
-            lines.remove("")
-        return lines
+from .grid import NULL, LOG_EVENT_TYPES, gen, GridLog
 
 
 def generate_null_array(array: iter, shape: int):
